@@ -1,0 +1,73 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<head>
+<title>Chính Sách Đổi Trả</title>
+<link rel="stylesheet" type="text/css"
+	href="bootstrap/css/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" href="css/style.css" />
+</head>
+<body>
+	<div class="container">
+		<nav class="navbar navbar-inverse">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="#">Nhóm 20</a>
+			</div>
+			<ul class="nav navbar-nav">
+				<li><h:link outcome="Home">Trang Chủ</h:link></li>
+				<li><h:link outcome="SanPham">Sản Phẩm</h:link></li>
+				<li class="active"><h:link outcome="Chinhsach">Chính Sách</h:link></li>
+				<li><a href="#">Chào Mừng #{dangnhapBean.sss}</a></li>
+			</ul>
+			<ul class="nav navbar-nav navbar-right">
+				<li><h:link outcome="DangKy">
+						<span class="glyphicon glyphicon-user"></span>
+						Đăng Ký</h:link></li>
+				<li><h:link outcome="DangNhap">
+						<span class="glyphicon glyphicon-log-in"></span>
+						Đăng Nhập</h:link></li>
+				<li><h:link outcome="GioHang">
+						<span class="glyphicon glyphicon-shopping-cart"></span> Giỏ Hàng</h:link></li>
+			</ul>
+		</div>
+		</nav>
+		<div class="content-change">
+			<h2 class="s-text8 text-center">chính sách đổi sản phẩm</h2>
+			<p class="s-text4">I. Chính sách áp dụng</p>
+			<p class="s-text5">1. Đổi hàng trong vòng 15 ngày kể từ ngày nhận
+				đối với các sản phẩm không sale.</p>
+			<p class="s-text5">2. Không áp dụng đổi hàng với các sản phẩm
+				sale.</p>
+			<p class="s-text4">II. Quy định đổi sản phẩm</p>
+			<p class="s-text5">1. Mỗi sản phẩm chỉ được đổi 1 lần.</p>
+			<p class="s-text5">2. Khách có thể đổi sản phẩm như sau:</p>
+			<p class="s-text5">- Sản phẩm cao hơn hoặc ngang giá, Nếu sản
+				phẩm đổi có giá trị cao hơn sản phẩm đã mua, khách hàng vui lòng
+				thanh toán bù thêm phần tiền chênh lệch.</p>
+			<p class="s-text5">- Sản phẩm giá thấp hơn sẽ không được hoàn lại
+				tiền thừa.</p>
+			<p class="s-text5">- Trường hợp sản phẩm khách muốn đổi đã hết
+				thì sẽ đổi sang sản phẩm khác.</p>
+			<p class="s-text5">3. Sản phẩm đổi chưa qua sử dụng, không bị vỡ,
+				xướt, còn giữ nguyên tem tag sản phẩm đầy đủ, sản phẩm đổi phải đi
+				cùng quà tặng kèm ( nếu có).</p>
+			<p class="s-text4">III. Quy Trình Đổi Sản Phẩm</p>
+			<p class="s-text5">1. Khách hàng vui lòng nhắn tin cho fan page
+				hoặc gọi đến số 0892 565 223 để được hướng dẫn quy trình đổi sản
+				phẩm.</p>
+			<p class="s-text5">2. Chúng tôi sẽ miễn phí 100% chi phí vận
+				chuyển khi đổi hàng.</p>
+		</div>
+		<footer class="page-footer font-small">
+		<div class="footer-copyright text-center py-3">© 2020 Copyright:
+			Nhóm 20</div>
+		<!-- Copyright --> </footer>
+	</div>
+</body>
+</html>

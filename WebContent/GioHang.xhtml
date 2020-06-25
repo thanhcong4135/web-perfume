@@ -1,0 +1,109 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<head>
+<title>Giỏ Hàng</title>
+<link rel="stylesheet" type="text/css"
+	href="bootstrap/css/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" href="css/style.css" />
+</head>
+<body>
+	<div class="container">
+		<nav class="navbar navbar-inverse">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="#">Nhóm 20</a>
+			</div>
+			<ul class="nav navbar-nav">
+				<li><h:link outcome="Home">Trang Chủ</h:link></li>
+				<li><h:link outcome="SanPham">Sản Phẩm</h:link></li>
+				<li><h:link outcome="Chinhsach">Chính Sách</h:link></li>
+			</ul>
+			<ul class="nav navbar-nav navbar-right">
+				<li><h:link outcome="DangKy">
+						<span class="glyphicon glyphicon-user"></span>
+						Đăng Ký</h:link></li>
+				<li><h:link outcome="DangNhap">
+						<span class="glyphicon glyphicon-log-in"></span>
+						Đăng Nhập</h:link></li>
+				<li class="active"><h:link outcome="GioHang">
+						<span class="glyphicon glyphicon-shopping-cart"></span> Giỏ Hàng</h:link></li>
+			</ul>
+		</div>
+		</nav>
+
+		<div class="content-cart">
+			<h1 class="title-cart text-center">Giỏ Hàng</h1>
+			<h:form>
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<th scope="col">#</th>
+							<th scope="col">Tên Sản Phẩm</th>
+							<th scope="col">Số Lượng</th>
+							<th scope="col">Giá</th>
+							<th scope="col">Tổng Cộng</th>
+						</tr>
+					</thead>
+					<tbody>
+						<ui:repeat var="c" value="#{cart.items}">
+							<tr>
+								<td>1</td>
+								<td>#{c.sanpham.tensp}</td>
+								<td>#{c.soluong}
+									
+								</td>
+								<td><h:outputText value="#{c.sanpham.gia}">
+										<f:convertNumber pattern="#,###,###" />
+									</h:outputText> VNĐ</td>
+								<td><h:outputText value="#{c.sanpham.gia *c.soluong }">
+										<f:convertNumber pattern="#,###,###" />
+									</h:outputText> VNĐ</td>
+								<td><h:commandButton class="btn btn-danger"
+										action="#{cart.deleteCart(c.sanpham)}" value="X" /></td>
+							</tr>
+						</ui:repeat>
+						<tr>
+							<td colSpan="1"></td>
+							<td>
+								<h4>
+									<strong>Tổng Tiền</strong>
+								</h4>
+							</td>
+							<td>
+								<h4>
+									<strong> <h:outputText value="#{cart.total()}">
+											<f:convertNumber pattern="#,###,###" />
+										</h:outputText> VNĐ
+									</strong>
+								</h4>
+							</td>
+							<td colSpan="3">
+								<div class="btn-group">
+
+									<button type="button" class="btn btn-warning">
+										<h:link outcome="SanPham">Quay Lại</h:link>
+									</button>
+									<button type="button" class="btn btn-warning">Thanh
+										Toán</button>
+								</div>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</h:form>
+		</div>
+
+		<!-- footer -->
+		<footer class="page-footer font-small">
+		<div class="footer-copyright text-center py-3">© 2020 Copyright:
+			Nhóm 20</div>
+		<!-- Copyright --> </footer>
+	</div>
+</body>
+</html>

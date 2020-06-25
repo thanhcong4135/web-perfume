@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1"
+	xmlns="http://xmlns.jcp.org/xml/ns/persistence"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+	<persistence-unit name="ShopPerfume">
+		<provider>org.hibernate.ogm.jpa.HibernateOgmPersistence</provider>
+		<class>PerfumeShop.Entitis.LoaiSanPham</class>
+		<class>PerfumeShop.Entitis.SanPham</class>
+		<class>PerfumeShop.Entitis.DonHang</class>
+		<class>PerfumeShop.Entitis.ChiTietDonHang</class>
+		<class>PerfumeShop.Entitis.ChiTietDonHangPK</class>
+		<class>PerfumeShop.Entitis.KhachHang</class>
+		<class>PerfumeShop.Entitis.QuanLy</class>
+		<class>PerfumeShop.Entitis.TaiKhoan</class>
+		<properties>
+			<property name="hibernate.ogm.datastore.provider"
+				value="org.hibernate.ogm.datastore.mongodb.impl.MongoDBDatastoreProvider" />
+			<property name="hibernate.ogm.datastore.database"
+				value="PerfumeDB" />
+			<property name="hibernate.ogm.datastore.host"
+				value="localhost" />
+			<property name="hibernate.ogm.datastore.create_database"
+				value="true" />
+		</properties>
+	</persistence-unit>
+</persistence>

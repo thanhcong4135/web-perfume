@@ -1,0 +1,75 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<head>
+<title>Chi Tiết Sản Phẩm</title>
+<link rel="stylesheet" type="text/css"
+	href="bootstrap/css/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" href="css/style.css" />
+</head>
+<body>
+	<div class="container">
+		<nav class="navbar navbar-inverse">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="#">Nhóm 20</a>
+			</div>
+			<ul class="nav navbar-nav">
+				<li><h:link outcome="Home">Trang Chủ</h:link></li>
+				<li><h:link outcome="SanPham">Sản Phẩm</h:link></li>
+				<li><h:link outcome="Chinhsach">Chính Sách</h:link></li>
+			</ul>
+			<ul class="nav navbar-nav navbar-right">
+				<li><h:link outcome="DangKy">
+						<span class="glyphicon glyphicon-user"></span>
+						Đăng Ký</h:link></li>
+				<li><h:link outcome="DangNhap">
+						<span class="glyphicon glyphicon-log-in"></span>
+						Đăng Nhập</h:link></li>
+				<li><h:link outcome="GioHang">
+						<span class="glyphicon glyphicon-shopping-cart"></span> Giỏ Hàng</h:link></li>
+			</ul>
+		</div>
+		</nav>
+		<div class="content-detail">
+			<h:form>
+				<div class="row">
+					<div class="col-sm-5">
+						<div class="detail-image">
+							<img src="#{chitiet.sanpham.url}" alt="Hinh Chi Tiet"
+								width="500px" height="450px" />
+						</div>
+					</div>
+
+					<div class="describe col-sm-5">
+						<h4 class="s-text10">#{chitiet.sanpham.tensp}</h4>
+						<h:outputText class="text-price s-text11 boder"
+							value="#{chitiet.sanpham.gia}">
+							<f:convertNumber pattern="#,###,###" />
+						</h:outputText>
+						<span class="s-12">VNĐ</span>
+						<h5 class="s-text4">Mô Tả</h5>
+						<p>Ngày Sản Xuất: #{chitiet.sanpham.ngaysx}</p>
+						<p>Ngày Hết Hạn: #{chitiet.sanpham.ngayhh}</p>
+						<div class="count-addcart boder">
+							<h:commandLink class="btn-add-cart" action="successcart"
+								actionListener="#{cart.addCart()}" value="THÊM VÀO GIỎ HÀNG">
+								<f:param name="ids" value="#{chitiet.sanpham.masp}"></f:param>
+							</h:commandLink>
+						</div>
+					</div>
+				</div>
+			</h:form>
+		</div>
+	</div>
+	<footer class="page-footer font-small">
+	<div class="footer-copyright text-center py-3">© 2020 Copyright:
+		Nhóm 20</div>
+	<!-- Copyright --> </footer>
+</body>
+</html>

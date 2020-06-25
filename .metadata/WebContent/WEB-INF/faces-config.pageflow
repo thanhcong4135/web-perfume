@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf15924972475580" configfile="/ShopPerfume/WebContent/WEB-INF/faces-config.xml">
+  <nodes xsi:type="pageflow:PFPage" name="Home.xhtml" x="180" y="60" id="pf15924973121671" referenceLink="//@navigationRule.6/@fromViewId|" outlinks="pf15924973122122 pf15924982356594 pf15924986955896 pf15925372368881 pf15925372369042 pf15925376022305" inlinks="pf15924986955896" path="/Home.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="SanPham.xhtml" x="180" y="274" id="pf15924973122123" referenceLink="//@navigationRule.12/@navigationCase.0/@toViewId|" outlinks="pf15925326238000" inlinks="pf15924973122122 pf15925850307168 pf15928344945340" path="/SanPham.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="Chinhsach.xhtml" x="456" y="24" id="pf15924982356605" referenceLink="//@navigationRule.1/@navigationCase.0/@toViewId|" inlinks="pf15924982356594" path="/Chinhsach.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="ChiTietSanPham.xhtml" x="240" y="468" id="pf15924991067177" referenceLink="//@navigationRule.3/@navigationCase.0/@toViewId|" outlinks="pf15930768175851" inlinks="pf15925326238000" path="/ChiTietSanPham.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="DangKy.xhtml" x="598" y="192" id="pf15925372369043" referenceLink="//@navigationRule.7/@fromViewId|" outlinks="pf15925850307168" inlinks="pf15925372369042" path="/DangKy.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="DangNhap.xhtml" x="588" y="84" id="pf15925372369044" referenceLink="//@navigationRule.14/@fromViewId|" outlinks="pf15928344945340 pf15928374067322 pf15930510909580" inlinks="pf15925372368881 pf15928374067322" path="/DangNhap.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="GioHang.xhtml" x="280" y="168" id="pf15925376022306" referenceLink="//@navigationRule.6/@navigationCase.0/@toViewId|" inlinks="pf15925376022305 pf15930768175851" path="/GioHang.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="Admin.xhtml" x="456" y="398" id="pf15926168376510" referenceLink="//@navigationRule.14/@navigationCase.0/@toViewId|" outlinks="pf15926168376511 pf15926212544632 pf15927923275170 pf15927923275171" inlinks="pf15926168376511 pf15927923275170 pf15930510909580" path="/Admin.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="error.xhtml" x="732" y="288" id="pf15926212544633" referenceLink="//@navigationRule.11/@navigationCase.0/@toViewId|" inlinks="pf15926212544632 pf15927923275171" path="/error.xhtml"/>
+  <links id="pf15924973122122" target="pf15924973122123" source="pf15924973121671" outcome="sanpham"/>
+  <links id="pf15924982356594" target="pf15924982356605" source="pf15924973121671" outcome="chinhsach"/>
+  <links id="pf15924986955896" target="pf15924973121671" source="pf15924973121671" outcome="trangchu">
+    <bendPoints d1Height="-36" d2Height="-36"/>
+    <bendPoints d1Width="-64" d1Height="-36" d2Width="-64" d2Height="-36"/>
+    <bendPoints d1Width="-64" d2Width="-64"/>
+  </links>
+  <links id="pf15925326238000" target="pf15924991067177" source="pf15924973122123" outcome="chitiet"/>
+  <links id="pf15925372368881" target="pf15925372369044" source="pf15924973121671" outcome="dangnhap"/>
+  <links id="pf15925372369042" target="pf15925372369043" source="pf15924973121671" outcome="dangky"/>
+  <links id="pf15925376022305" target="pf15925376022306" source="pf15924973121671" outcome="giohang"/>
+  <links id="pf15925850307168" target="pf15924973122123" source="pf15925372369043" outcome="success"/>
+  <links id="pf15926168376511" target="pf15926168376510" source="pf15926168376510" outcome="success">
+    <bendPoints d1Height="-36" d2Height="-36"/>
+    <bendPoints d1Width="-64" d1Height="-36" d2Width="-64" d2Height="-36"/>
+    <bendPoints d1Width="-64" d2Width="-64"/>
+  </links>
+  <links id="pf15926212544632" target="pf15926212544633" source="pf15926168376510" outcome="error"/>
+  <links id="pf15927923275170" target="pf15926168376510" source="pf15926168376510" outcome="success1">
+    <bendPoints d1Height="-66" d2Height="-66"/>
+    <bendPoints d1Width="-94" d1Height="-66" d2Width="-94" d2Height="-66"/>
+    <bendPoints d1Width="-94" d2Width="-94"/>
+  </links>
+  <links id="pf15927923275171" target="pf15926212544633" source="pf15926168376510" outcome="error1"/>
+  <links id="pf15928344945340" target="pf15924973122123" source="pf15925372369044" outcome="successkh"/>
+  <links id="pf15928374067322" target="pf15925372369044" source="pf15925372369044" outcome="incorrect">
+    <bendPoints d1Height="-36" d2Height="-36"/>
+    <bendPoints d1Width="-64" d1Height="-36" d2Width="-64" d2Height="-36"/>
+    <bendPoints d1Width="-64" d2Width="-64"/>
+  </links>
+  <links id="pf15930510909580" target="pf15926168376510" source="pf15925372369044" outcome="loginAdmin"/>
+  <links id="pf15930768175851" target="pf15925376022306" source="pf15924991067177" outcome="successcart"/>
+</pageflow:Pageflow>

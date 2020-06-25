@@ -1,0 +1,170 @@
+	<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<head>
+<title>Admin Page</title>
+<link rel="stylesheet" type="text/css"
+	href="bootstrap/css/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" href="css/style.css" />
+</head>
+<body>
+	<div class="container">
+		<nav class="navbar navbar-inverse">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="#">Nhóm 20</a>
+			</div>
+			<ul class="nav navbar-nav">
+				<li><h:link outcome="Home">Trang Chủ</h:link></li>
+				<li><h:link outcome="SanPham">Sản Phẩm</h:link></li>
+				<li><h:link outcome="Chinhsach">Chính Sách</h:link></li>
+				<li><a href="#">#{dangnhapBean.sadmin}</a></li>
+			</ul>
+			<ul class="nav navbar-nav navbar-right">
+				<li><h:link outcome="DangKy">
+						<span class="glyphicon glyphicon-user"></span>
+						Đăng Ký</h:link></li>
+				<li><h:link outcome="DangNhap">
+						<span class="glyphicon glyphicon-log-in"></span>
+						Đăng Nhập</h:link></li>
+				<li><h:link outcome="GioHang">
+						<span class="glyphicon glyphicon-shopping-cart"></span> Giỏ Hàng</h:link></li>
+			</ul>
+		</div>
+		</nav>
+		<div class="content-admin">
+			<h1 class="text-center text-danger">Quản Lý Khách Hàng</h1>
+			<h:form>
+				<table class="table">
+					<thead class="thead-dark">
+						<tr>
+							<th scope="col">ID</th>
+							<th scope="col">Tên Khách Hàng</th>
+							<th scope="col">Email</th>
+							<th scope="col">Số Điện Thoại</th>
+							<th scope="col">Xóa</th>
+						</tr>
+					</thead>
+					<tbody>
+						<ui:repeat var="kh" value="#{dangKyBean.getKhachhangs()}">
+							<tr>
+								<th scope="row">#{kh.mahk}</th>
+								<td>#{kh.tenkh}</td>
+								<td>#{kh.email}</td>
+								<td>#{kh.sodt}</td>
+								<td><h:commandButton value="X" class="btn btn-danger"
+										action="#{dangKyBean.deleteKhachhang(kh)}" /></td>
+							</tr>
+						</ui:repeat>
+					</tbody>
+				</table>
+			</h:form>
+			<h1 class="text-center text-danger">Quản Lý Sản Phẩm</h1>
+
+			<div class="row">
+				<h:form>
+					<div class="col-sm-9">
+						<table class="table">
+							<thead class="thead-dark">
+								<tr>
+									<th scope="col">ID</th>
+									<th scope="col">Loại</th>
+									<th scope="col">Tên</th>
+									<th scope="col">Hạn Sử Dụng</th>
+									<th scope="col">Số Lượng</th>
+									<th scope="col">Giá</th>
+									<th scope="col">Hành Động</th>
+								</tr>
+							</thead>
+							<tbody>
+								<ui:repeat var="sp" value="#{sanphamBean.getSanphams()}">
+									<tr>
+										<th scope="row">#{sp.masp}</th>
+										<td>#{sp.loaisp.tenloai}</td>
+										<td>#{sp.tensp}</td>
+										<td>NSX: #{sp.ngaysx} -> NHH: #{sp.ngayhh}</td>
+										<td>#{sp.soluong}</td>
+										<td><h:outputText value="#{sp.gia}">
+												<f:convertNumber pattern="#,###,###" />
+											</h:outputText> VNĐ</td>
+										<td><h:commandButton class="btn btn-danger" value="X"
+												action="#{sanphamBean.xoasp(sp)}" /></td>
+									</tr>
+								</ui:repeat>
+							</tbody>
+						</table>
+					</div>
+				</h:form>
+
+				<div class="col-sm-3 border">
+					<h3 class="text-center text-danger">Thêm Sản Phẩm</h3>
+					<h:form>
+						<div class="form-group">
+							<br />
+							<h:selectOneMenu id="loaiID" class="form-control" required="true"
+								value="#{sanphamBean.loai}">
+								<f:selectItems value="#{sanphamBean.listLoai}" var="lsp"
+									itemLabel="#{lsp.tenloai}" itemValue="#{lsp.maloai}"/>
+							</h:selectOneMenu>
+							<h:message for="loaiID" style="color:red" />
+						</div>
+						<div class="form-group">
+							<h:outputLabel value="Tên Sản Phẩm" />
+							<h:inputText value="#{sanphamBean.sanpham.tensp}" required="true"
+								id="tensp" requiredMessage="Không rỗng" class="form-control" />
+							<h:message for="tensp" style="color:red" />
+						</div>
+
+						<div class="form-group">
+							<h:outputLabel value="Số Lượng" />
+							<h:inputText value="#{sanphamBean.sanpham.soluong}"
+								required="true" id="soluong" requiredMessage="Không rỗng"
+								class="form-control" />
+							<h:message for="soluong" style="color:red" />
+						</div>
+						<div class="form-group">
+							<h:outputLabel value="Giá" />
+							<h:inputText value="#{sanphamBean.tempGia}" required="true"
+								id="gia" requiredMessage="Không rỗng" class="form-control">
+								<f:convertNumber minFractionDigits="2" />
+							</h:inputText>
+							<h:message for="gia" style="color:red" />
+						</div>
+						
+						<div class="form-group">
+							<h:outputLabel value="Ngày Sản Xuất" />
+							<h:inputText value="#{sanphamBean.sanpham.ngaysx}"
+								required="true" id="ngaysx" requiredMessage="Không rỗng"
+								class="form-control">
+								<f:convertDateTime pattern="dd/MM/yyyy" />
+							</h:inputText>
+							<h:message for="ngaysx" style="color:red" />
+						</div>
+						<div class="form-group">
+							<h:outputLabel value="Ngày Hết Hạn" />
+							<h:inputText value="#{sanphamBean.sanpham.ngayhh}"
+								required="true" id="ngayhh" requiredMessage="Không rỗng"
+								class="form-control">
+								<f:convertDateTime pattern="dd/MM/yyyy" />
+							</h:inputText>
+							<h:message for="ngayhh" style="color:red" />
+						</div>
+						<h:commandButton value="Lưu"
+							class="btn btn-success btn-block mb-3"
+							action="#{sanphamBean.themsp()}" />
+					</h:form>
+				</div>
+			</div>
+		</div>
+		<footer class="page-footer font-small">
+		<div class="footer-copyright text-center py-3">© 2020 Copyright:
+			Nhóm 20</div>
+		<!-- Copyright --> </footer>
+	</div>
+</body>
+</html>
