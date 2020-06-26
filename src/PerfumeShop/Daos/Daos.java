@@ -156,24 +156,14 @@ public class Daos {
 		return em.createNativeQuery("db.donhang.find({})", DonHang.class).getResultList();
 	}
 
-	// Chi Tiet Don Hang
-
-	public boolean themCTHD(ChiTietDonHang ct) {
-		EntityTransaction tr = em.getTransaction();
-		try {
-			tr.begin();
-			em.persist(ct);
-			tr.commit();
-			return true;
-		} catch (Exception e) {
-			e.printStackTrace();
-			tr.rollback();
+	public int getIDDH() {
+		int idMax = 0;
+		String query = "db.donhang.find({}).sort({_id:-1}).limit(1)";
+		List<DonHang> ldh = em.createNativeQuery(query, DonHang.class).getResultList();
+		for (DonHang dh : ldh) {
+			idMax = dh.getMadh();
 		}
-		return false;
-	}
-
-	public List<ChiTietDonHang> getChitietdonhangs() {
-		return em.createNativeQuery("db.chitiethoadon.find({})", ChiTietDonHang.class).getResultList();
+		return idMax;
 	}
 
 	// Them khach hang
@@ -295,9 +285,11 @@ public class Daos {
 	}
 
 	public boolean getQL(String pass, String user) {
-		List<QuanLy> lql = em.createNativeQuery("db.quanly.find({taikhoan:{password:\"" + pass + "\",username:\"" + user + "\"}})",
-				QuanLy.class).getResultList();
-		if(lql.size() > 0)
+		List<QuanLy> lql = em
+				.createNativeQuery("db.quanly.find({taikhoan:{password:\"" + pass + "\",username:\"" + user + "\"}})",
+						QuanLy.class)
+				.getResultList();
+		if (lql.size() > 0)
 			return true;
 		return false;
 	}

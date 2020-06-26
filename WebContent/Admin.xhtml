@@ -1,4 +1,5 @@
-	<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml"
@@ -109,7 +110,7 @@
 							<h:selectOneMenu id="loaiID" class="form-control" required="true"
 								value="#{sanphamBean.loai}">
 								<f:selectItems value="#{sanphamBean.listLoai}" var="lsp"
-									itemLabel="#{lsp.tenloai}" itemValue="#{lsp.maloai}"/>
+									itemLabel="#{lsp.tenloai}" itemValue="#{lsp.maloai}" />
 							</h:selectOneMenu>
 							<h:message for="loaiID" style="color:red" />
 						</div>
@@ -135,7 +136,7 @@
 							</h:inputText>
 							<h:message for="gia" style="color:red" />
 						</div>
-						
+
 						<div class="form-group">
 							<h:outputLabel value="Ngày Sản Xuất" />
 							<h:inputText value="#{sanphamBean.sanpham.ngaysx}"
@@ -160,11 +161,36 @@
 					</h:form>
 				</div>
 			</div>
+
+			<h1 class="text-center text-danger">Quản Lý Hóa Đơn</h1>
+			<div class="col-sm-9">
+				<table class="table">
+					<thead class="thead-dark">
+						<tr>
+							<th scope="col">ID</th>
+							<th scope="col">Mã Khách Hàng</th>
+							<th scope="col">Địa Chỉ</th>
+							<th scope="col">Ngày Mua</th>
+							<th scope="col">Tổng Tiền</th>
+						</tr>
+					</thead>
+					<tbody>
+						<ui:repeat var="dh" value="#{donhang.getDonhangs()}">
+							<tr>
+								<th scope="row">#{dh.madh}</th>
+								<td>#{dh.khachhang.mahk}</td>
+								<td>#{dh.diachi}</td>
+								<td>#{dh.ngaymua}</td>
+								<td><h:outputText value="#{dh.tongtien}">
+										<f:convertNumber pattern="#,###,###" />
+									</h:outputText> VNĐ</td>
+							</tr>
+						</ui:repeat>
+					</tbody>
+				</table>
+			</div>
 		</div>
-		<footer class="page-footer font-small">
-		<div class="footer-copyright text-center py-3">© 2020 Copyright:
-			Nhóm 20</div>
-		<!-- Copyright --> </footer>
+		
 	</div>
 </body>
 </html>

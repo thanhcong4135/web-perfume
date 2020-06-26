@@ -35,36 +35,65 @@
 		</nav>
 		<div class="content-profile">
 			<div class="container">
-				<h:form>
-					<div class="row">
-						<div class="left-profile col-sm-3">
-							<img src="./images/ava1.jpg" width="250px" height="250px" />
-						</div>
-						<div class="right-profile">
-							<ui:repeat var="kh" value="#{dangnhapBean.getprofile()}">
-								<p class="profile">
-									<strong>Họ Và Tên:</strong> #{kh.tenkh}
-								</p>
-								<p class="profile">
-									<strong>Email:</strong> #{kh.email}
-								</p>
-								<p class="profile">
-									<strong>Số Điện Thoại:</strong> #{kh.sodt}
-								</p>
-								<p class="profile">
-									<strong>Địa Chỉ:</strong> #{kh.diachi}
-								</p>
-								<p class="profile">
-									<strong>Ngày Sinh:</strong> #{kh.ngaysinh}
-								</p>
-							</ui:repeat>
+				<div class="row">
+					<div class="col-sm-6">
+						<h:form>
+							<div class="row">
+								<div class="left-profile col-sm-3">
+									<img src="./images/ava1.jpg" width="100px" height="100px" />
+								</div>
+								<div class="right-profile">
+									<ui:repeat var="kh" value="#{dangnhapBean.getprofile()}">
+										<p class="profile">
+											<strong>Họ Và Tên:</strong> #{kh.tenkh}
+										</p>
+										<p class="profile">
+											<strong>Email:</strong> #{kh.email}
+										</p>
+										<p class="profile">
+											<strong>Số Điện Thoại:</strong> #{kh.sodt}
+										</p>
+										<p class="profile">
+											<strong>Địa Chỉ:</strong> #{kh.diachi}
+										</p>
+										<p class="profile">
+											<strong>Ngày Sinh:</strong> #{kh.ngaysinh}
+										</p>
+									</ui:repeat>
 
-							<h:commandButton class="btn btn-danger" value="logout"
-								action="dangnhapBean.logout()" />
+									<h:commandButton class="btn btn-danger btn-block" value="logout"
+										action="dangnhapBean.logout()" />
 
-						</div>
+								</div>
+							</div>
+						</h:form>
 					</div>
-				</h:form>
+					<div class="col-sm-6">
+						<h1 class="text-danger text-center">Danh Sách Hóa Đơn Bạn Mua</h1>
+						<table class="table">
+							<thead class="thead-dark">
+								<tr>
+									<th scope="col">ID</th>
+									<th scope="col">Địa Chỉ</th>
+									<th scope="col">Ngày Mua</th>
+									<th scope="col">Tổng Tiền</th>
+								</tr>
+							</thead>
+							<tbody>
+								<ui:repeat var="dh" value="#{donhang.getDHByKH()}">
+									<tr>
+										<th scope="row">#{dh.madh}</th>
+										<td>#{dh.diachi}</td>
+										<td>#{dh.ngaymua}</td>
+										<td><h:outputText value="#{dh.tongtien}">
+												<f:convertNumber pattern="#,###,###" />
+											</h:outputText> VNĐ</td>
+									</tr>
+								</ui:repeat>
+							</tbody>
+						</table>
+					</div>
+				</div>
 			</div>
 		</div>
 		<footer class="page-footer font-small">

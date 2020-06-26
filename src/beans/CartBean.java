@@ -27,7 +27,7 @@ public class CartBean {
 	private ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
 	private Map<String, Object> sessionMap = externalContext.getSessionMap();
 	private List<CartItem> items = new ArrayList<CartItem>();
-
+	
 	public CartBean() {
 
 		String matamthoi = "";
@@ -72,7 +72,7 @@ public class CartBean {
 			items.get(index).setSoluong(quantity);
 		}
 		sessionMap.put("cartitem", items);
-		
+
 	}
 
 	public void updateCart(SanPham sp, int quantity) {
@@ -95,20 +95,16 @@ public class CartBean {
 		return s;
 	}
 
-	public String thanhtoan() {
-		System.out.println("income");
+	public void thanhtoan() {
 		HttpSession session = Sessionutil.getSession();
 		String seAdmin = (String) session.getAttribute("username");
 		KhachHang kh = null;
-		System.out.println("b1");
 		List<KhachHang> lkh = dao.getKhachhangs();
 		for (KhachHang khachHang : lkh) {
 			if (khachHang.getTaikhoan().getUsername().equalsIgnoreCase(seAdmin)) {
 				kh = khachHang;
 			}
 		}
-		System.out.println(kh);
-		System.out.println("b2");
 		List<ChiTietDonHang> lct = new ArrayList<ChiTietDonHang>();
 		for (int i = 0; i < items.size(); i++) {
 			lct.add(new ChiTietDonHang(items.get(i).getSanpham(), items.get(i).getSoluong()));
@@ -118,9 +114,10 @@ public class CartBean {
 		String now = LocalDate.now().toString();
 		DonHang dh = new DonHang(kh.getDiachi(), now, total(), kh);
 		dh.setListCTDH(lct);
-		System.out.println(dh);
+		dh.setMadh(dao.getIDDH() + 1);
 		dao.themHD(dh);
-		return "payment";
+		sessionMap.put("cartitem", null);
+
 	}
 
 }

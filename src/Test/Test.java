@@ -27,7 +27,7 @@ public class Test {
 //		SanPham sp = new SanPham("Louis", 100, "./images/nh3.jpg", "12/02/2020", "21/02/2022", 3);
 //		sp.setMasp(dao.getIDSP()+1);
 //		sp.setLoaisp(lsp);
-		SanPham sp1 = new SanPham("Menup", 200, "./images/nh3.jpg", "12/02/2019", "15/03/2021", 4);
+//		SanPham sp1 = new SanPham("Menup", 200, "./images/nh3.jpg", "12/02/2019", "15/03/2021", 4);
 //		sp1.setMasp(dao.getIDSP()+1);
 //		sp1.setLoaisp(lsp);
 //		dao.themSP(sp);
@@ -41,13 +41,7 @@ public class Test {
 //		ql.setTaikhoan(new TaiKhoan("QLBao", "123456"));
 //		dao.themQL(ql);
 		
-		KhachHang kh = dao.getKhachhang(1);
-		ArrayList<ChiTietDonHang> lct = new ArrayList<ChiTietDonHang>();
-		ChiTietDonHang ct = new ChiTietDonHang(sp1, 2);
-		lct.add(ct);
-		DonHang dh = new DonHang("QGV", "25/06/2020", 222222, kh);
-		dh.setListCTDH(lct);
-		dao.themHD(dh);
+		System.out.println(dao.getDonhangs());
 		
 	}
 
