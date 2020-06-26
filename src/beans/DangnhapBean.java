@@ -1,8 +1,11 @@
 package beans;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.faces.bean.ManagedBean;
+import javax.faces.context.ExternalContext;
+import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
 
 import PerfumeShop.Daos.Daos;
@@ -10,6 +13,8 @@ import PerfumeShop.Entitis.KhachHang;
 
 @ManagedBean
 public class DangnhapBean {
+	private ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
+	private Map<String, Object> sessionMap = externalContext.getSessionMap();
 	private String user;
 	private String pass;
 	private Daos dao;
@@ -69,6 +74,12 @@ public class DangnhapBean {
 			return "loginAdmin";
 		}
 		return "incorrect";
+	}
+
+	public String logout() {
+		HttpSession session = Sessionutil.getSession();
+		sessionMap.put("username", null);
+		return "logout";
 	}
 
 	public KhachHang getprofile() {

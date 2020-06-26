@@ -132,5 +132,21 @@
 			<to-view-id>/GioHang.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
+	<navigation-rule>
+		<display-name>Profile.xhtml</display-name>
+		<from-view-id>/Profile.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>logout</from-outcome>
+			<to-view-id>/SanPham.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<display-name>GioHang.xhtml</display-name>
+		<from-view-id>/GioHang.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>payment</from-outcome>
+			<to-view-id>/Profile.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
 
 </faces-config>

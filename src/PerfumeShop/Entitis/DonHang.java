@@ -17,7 +17,7 @@ public class DonHang implements Serializable {
 	@Id
 	private int madh;
 	private String diachi;
-	private LocalDate ngaymua;
+	private String ngaymua;
 	private double tongtien;
 
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
@@ -26,23 +26,19 @@ public class DonHang implements Serializable {
 	@ElementCollection(targetClass = ChiTietDonHang.class, fetch = FetchType.EAGER)
 	private List<ChiTietDonHang> listCTDH;
 
-	public DonHang(String diachi, LocalDate ngaymua, double tongtien, KhachHang khachhang,
-			List<ChiTietDonHang> listCTDH) {
+	public DonHang(String diachi, String ngaymua, double tongtien, KhachHang khachhang) {
 		super();
 		this.diachi = diachi;
 		this.ngaymua = ngaymua;
 		this.tongtien = tongtien;
 		this.khachhang = khachhang;
-		this.listCTDH = listCTDH;
 	}
-
 
 	@Override
 	public String toString() {
 		return "DonHang [madh=" + madh + ", diachi=" + diachi + ", ngaymua=" + ngaymua + ", tongtien=" + tongtien
 				+ ", khachhang=" + khachhang + ", listCTDH=" + listCTDH + "]";
 	}
-
 
 	public int getMadh() {
 		return madh;
@@ -60,11 +56,11 @@ public class DonHang implements Serializable {
 		this.diachi = diachi;
 	}
 
-	public LocalDate getNgaymua() {
+	public String getNgaymua() {
 		return ngaymua;
 	}
 
-	public void setNgaymua(LocalDate ngaymua) {
+	public void setNgaymua(String ngaymua) {
 		this.ngaymua = ngaymua;
 	}
 

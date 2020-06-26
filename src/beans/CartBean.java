@@ -1,6 +1,9 @@
 package beans;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Map;
 
@@ -11,6 +14,9 @@ import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
 
 import PerfumeShop.Daos.Daos;
+import PerfumeShop.Entitis.ChiTietDonHang;
+import PerfumeShop.Entitis.DonHang;
+import PerfumeShop.Entitis.KhachHang;
 import PerfumeShop.Entitis.SanPham;
 
 @SessionScoped
@@ -30,10 +36,11 @@ public class CartBean {
 		for (String key : params.keySet())
 			if (key.equals("ids"))
 				matamthoi = params.get("ids").toString();
-		//get session
+		// get session
 		for (String key : sessionMap.keySet())
-			if (key.equals("cart"))
-				items = (List<CartItem>) sessionMap.get("cart");
+			if (key.equals("cartitem"))
+				items = (List<CartItem>) sessionMap.get("cartitem");
+		System.out.println(items);
 		ma = Integer.parseInt(matamthoi);
 	}
 
@@ -56,22 +63,16 @@ public class CartBean {
 	}
 
 	public void addCart() {
-		System.out.println("xxx1");
 		SanPham sp = dao.getSanpham(ma);
 		int index = exists(sp);
 		if (index == -1) {
-			System.out.println("xxx2");
 			items.add(new CartItem(sp, 1));
 		} else {
-			System.out.println("xxx3");
 			int quantity = items.get(index).getSoluong() + 1;
 			items.get(index).setSoluong(quantity);
 		}
-		System.out.println("FUk: " + items.size());
-		for (CartItem p : items)
-			System.out.println(p.toString());
-
 		sessionMap.put("cartitem", items);
+		
 	}
 
 	public void updateCart(SanPham sp, int quantity) {
@@ -95,7 +96,31 @@ public class CartBean {
 	}
 
 	public String thanhtoan() {
-		
+		System.out.println("income");
+		HttpSession session = Sessionutil.getSession();
+		String seAdmin = (String) session.getAttribute("username");
+		KhachHang kh = null;
+		System.out.println("b1");
+		List<KhachHang> lkh = dao.getKhachhangs();
+		for (KhachHang khachHang : lkh) {
+			if (khachHang.getTaikhoan().getUsername().equalsIgnoreCase(seAdmin)) {
+				kh = khachHang;
+			}
+		}
+		System.out.println(kh);
+		System.out.println("b2");
+		List<ChiTietDonHang> lct = new ArrayList<ChiTietDonHang>();
+		for (int i = 0; i < items.size(); i++) {
+			lct.add(new ChiTietDonHang(items.get(i).getSanpham(), items.get(i).getSoluong()));
+		}
+		System.out.println(lct);
+
+		String now = LocalDate.now().toString();
+		DonHang dh = new DonHang(kh.getDiachi(), now, total(), kh);
+		dh.setListCTDH(lct);
+		System.out.println(dh);
+		dao.themHD(dh);
+		return "payment";
 	}
-	
+
 }

@@ -21,6 +21,8 @@ public class KhachHang implements Serializable {
 	private String tenkh;
 	private String email;
 	private String sodt;
+	private String ngaysinh;
+	private String diachi;
 	private TaiKhoan taikhoan;
 
 	public int getMahk() {
@@ -33,6 +35,22 @@ public class KhachHang implements Serializable {
 
 	public String getTenkh() {
 		return tenkh;
+	}
+
+	public String getNgaysinh() {
+		return ngaysinh;
+	}
+
+	public void setNgaysinh(String ngaysinh) {
+		this.ngaysinh = ngaysinh;
+	}
+
+	public String getDiachi() {
+		return diachi;
+	}
+
+	public void setDiachi(String diachi) {
+		this.diachi = diachi;
 	}
 
 	public void setTenkh(String tenkh) {
@@ -61,11 +79,13 @@ public class KhachHang implements Serializable {
 				+ taikhoan + "]";
 	}
 
-	public KhachHang(String tenkh, String email, String sodt, TaiKhoan taikhoan) {
+	public KhachHang(String tenkh, String email, String sodt, String ngaysinh, String diachi, TaiKhoan taikhoan) {
 		super();
 		this.tenkh = tenkh;
 		this.email = email;
 		this.sodt = sodt;
+		this.ngaysinh = ngaysinh;
+		this.diachi = diachi;
 		this.taikhoan = taikhoan;
 	}
 

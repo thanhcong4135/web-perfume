@@ -15,15 +15,7 @@ public class ChiTietDonHang implements Serializable {
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "masp")
 	private SanPham sanpham;
-
-	private double gia;
-	private double ship;
 	private int soluong;
-
-	@Override
-	public String toString() {
-		return "ChiTietDonHang [sanpham=" + sanpham + ", gia=" + gia + ", ship=" + ship + ", soluong=" + soluong + "]";
-	}
 
 
 	public SanPham getSanpham() {
@@ -34,22 +26,6 @@ public class ChiTietDonHang implements Serializable {
 		this.sanpham = sanpham;
 	}
 
-	public double getGia() {
-		return gia;
-	}
-
-	public void setGia(double gia) {
-		this.gia = gia;
-	}
-
-	public double getShip() {
-		return ship;
-	}
-
-	public void setShip(double ship) {
-		this.ship = ship;
-	}
-
 	public int getSoluong() {
 		return soluong;
 	}
@@ -58,11 +34,10 @@ public class ChiTietDonHang implements Serializable {
 		this.soluong = soluong;
 	}
 
-	public ChiTietDonHang(SanPham sanpham, double gia, double ship, int soluong) {
+	
+	public ChiTietDonHang(SanPham sanpham, int soluong) {
 		super();
 		this.sanpham = sanpham;
-		this.gia = gia;
-		this.ship = ship;
 		this.soluong = soluong;
 	}
 

@@ -39,9 +39,9 @@
 		<div class="form-dangky">
 			<h:form>
 				<div class="row">
-				<div class="col-md-6">
-					<img src="./images/nhhq.jpg" alt="Quang Cao" width="95%" />
-				</div>
+					<div class="col-md-6">
+						<img src="./images/nhhq.jpg" alt="Quang Cao" width="95%" />
+					</div>
 					<div class="col-md-6">
 						<div class="form-group ">
 							<h:outputLabel value="Tên Đăng Nhập" />
@@ -56,6 +56,22 @@
 								requiredMessage="Không được rỗng" value="#{dangKyBean.pass}"
 								type="password" class="form-control" />
 							<h:message for="pass" style="color:red" />
+						</div>
+						<div class="form-group col-md-6">
+							<h:outputLabel value="Địa Chỉ" />
+							<h:inputText required="true" id="dc"
+								requiredMessage="Không được rỗng"
+								value="#{dangKyBean.khachhang.diachi}" class="form-control" />
+							<h:message for="dc" style="color:red" />
+						</div>
+						<div class="form-group col-md-6">
+							<h:outputLabel value="Ngay Sinh" />
+							<h:inputText required="true" id="ns"
+								requiredMessage="Nhập đúng cú pháp"
+								value="#{dangKyBean.khachhang.ngaysinh}" class="form-control">
+								<f:convertDateTime pattern="dd/MM/yyyy" />
+							</h:inputText>
+							<h:message for="ns" style="color:red" />
 						</div>
 
 						<div class="form-group col-md-6">
