@@ -70,6 +70,7 @@
 			<artifactId>javax.servlet.jsp.jstl-api</artifactId>
 			<version>1.2.1</version>
 		</dependency>
-
+		<!-- http://mvnrepository.com/artifact/org.glassfish.web/javax.servlet.jsp.jstl -->
+		
 	</dependencies>
 </project>

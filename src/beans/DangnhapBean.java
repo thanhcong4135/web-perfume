@@ -67,10 +67,12 @@ public class DangnhapBean {
 		if (valid) {
 			HttpSession session = Sessionutil.getSession();
 			session.setAttribute("username", user);
+			sessionMap.put("checklogin", true);
 			return "successkh";
 		} else if (validAdmin) {
 			HttpSession session = Sessionutil.getSession();
 			session.setAttribute("Admin", user);
+			sessionMap.put("checklogin", true);
 			return "loginAdmin";
 		}
 		return "incorrect";
@@ -79,6 +81,7 @@ public class DangnhapBean {
 	public String logout() {
 		HttpSession session = Sessionutil.getSession();
 		sessionMap.put("username", null);
+		sessionMap.put("checklogin", false);
 		return "logout";
 	}
 

@@ -26,21 +26,21 @@ public class CartBean {
 	private Daos dao = new Daos();
 	private ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
 	private Map<String, Object> sessionMap = externalContext.getSessionMap();
+	private Map<String, String> params = externalContext.getRequestParameterMap();
 	private List<CartItem> items = new ArrayList<CartItem>();
-	
-	public CartBean() {
 
+	public CartBean() {
 		String matamthoi = "";
-		FacesContext fc = FacesContext.getCurrentInstance();
-		Map<String, String> params = fc.getExternalContext().getRequestParameterMap();
-		for (String key : params.keySet())
+		for (String key : params.keySet()) {
 			if (key.equals("ids"))
-				matamthoi = params.get("ids").toString();
+				matamthoi = params.get("ids");
+		}
+
+		System.out.println("ID: " + matamthoi);
 		// get session
 		for (String key : sessionMap.keySet())
 			if (key.equals("cartitem"))
 				items = (List<CartItem>) sessionMap.get("cartitem");
-		System.out.println(items);
 		ma = Integer.parseInt(matamthoi);
 	}
 
@@ -71,7 +71,7 @@ public class CartBean {
 			int quantity = items.get(index).getSoluong() + 1;
 			items.get(index).setSoluong(quantity);
 		}
-		sessionMap.put("cartitem", items);
+		sessionMap.replace("cartitem", items);
 
 	}
 
@@ -85,6 +85,7 @@ public class CartBean {
 	public void deleteCart(SanPham sp) {
 		int index = this.exists(sp);
 		items.remove(index);
+		sessionMap.put("cartitem", items);
 	}
 
 	public double total() {
@@ -109,7 +110,6 @@ public class CartBean {
 		for (int i = 0; i < items.size(); i++) {
 			lct.add(new ChiTietDonHang(items.get(i).getSanpham(), items.get(i).getSoluong()));
 		}
-		System.out.println(lct);
 
 		String now = LocalDate.now().toString();
 		DonHang dh = new DonHang(kh.getDiachi(), now, total(), kh);

@@ -25,12 +25,14 @@
 				<li><h:link outcome="Chinhsach">Chính Sách</h:link></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
-				<li class="active"><h:link outcome="DangKy">
-						<span class="glyphicon glyphicon-user"></span>
+				<h:outputLabel rendered="#{!home.check}">
+					<li><h:link outcome="DangKy">
+							<span class="glyphicon glyphicon-user"></span>
 						Đăng Ký</h:link></li>
-				<li><h:link outcome="DangNhap">
-						<span class="glyphicon glyphicon-log-in"></span>
+					<li><h:link outcome="DangNhap">
+							<span class="glyphicon glyphicon-log-in"></span>
 						Đăng Nhập</h:link></li>
+				</h:outputLabel>
 				<li><h:link outcome="GioHang">
 						<span class="glyphicon glyphicon-shopping-cart"></span> Giỏ Hàng</h:link></li>
 			</ul>
